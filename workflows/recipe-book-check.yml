@@ -1,0 +1,16 @@
+name: Recipe Book Check
+
+on: push
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out my recipes
+        uses: actions/checkout@v4
+
+      - name: List all recipe files
+        run: ls -la
+
+      - name: Count how many recipes we have
+        run: echo "Recipe count:" && ls *.md 2>/dev/null | wc -l || echo "0 .md files found"
